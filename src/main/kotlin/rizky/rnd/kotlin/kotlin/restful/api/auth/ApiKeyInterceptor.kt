@@ -10,11 +10,15 @@ import java.lang.Exception
 
 @Component
 class ApiKeyInterceptor(val apiKeyRepository: ApiKeyRepository): WebRequestInterceptor {
-    override fun preHandle(request: WebRequest) {
-        var apiKey = request.getHeader("X-Api-Key") ?: throw UnauthorizedException()
 
-        if (!apiKeyRepository.existsById(apiKey)) {
-            throw UnauthorizedException()
+    private val whiteListUris = arrayOf(
+        "/api/login"
+    )
+    override fun preHandle(request: WebRequest) {
+        val uri = request.getDescription(false).removePrefix("uri=")
+
+        if (!isWhitelistedUri(whiteListUris, uri)) {
+            val jwt = request.getHeader("X-Api-Token") ?: throw UnauthorizedException()
         }
     }
 
@@ -26,4 +30,13 @@ class ApiKeyInterceptor(val apiKeyRepository: ApiKeyRepository): WebRequestInter
         // no need
     }
 
+    private fun isWhitelistedUri(whiteListUris: Array<String>, uri: String): Boolean {
+        whiteListUris.forEach {
+            if (uri == it) {
+                return true
+            }
+        }
+
+        return false
+    }
 }
