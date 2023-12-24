@@ -1,18 +1,15 @@
 package rizky.rnd.kotlin.kotlin.restful.api.service
 
 import io.jsonwebtoken.Jwts
-import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
 import org.springframework.stereotype.Service
 import rizky.rnd.kotlin.kotlin.restful.api.error.NotFoundException
 import rizky.rnd.kotlin.kotlin.restful.api.model.Auth.LoginRequest
-import rizky.rnd.kotlin.kotlin.restful.api.model.WebResponse
 import rizky.rnd.kotlin.kotlin.restful.api.repository.LoginDataRepository
 import rizky.rnd.kotlin.kotlin.restful.api.validation.ValidationUtil
 import java.nio.charset.StandardCharsets
 import java.util.*
 import javax.crypto.SecretKey
-import kotlin.coroutines.ContinuationInterceptor
 
 @Service
 class AuthServiceImpl(
@@ -22,6 +19,7 @@ class AuthServiceImpl(
     override fun login(loginRequest: LoginRequest): String {
        validationUtil.validate(loginRequest)
 
+        val now = Date()
         val user = loginDataRepository.findByEmailAndPassword(
             loginRequest.email,
             loginRequest.password
