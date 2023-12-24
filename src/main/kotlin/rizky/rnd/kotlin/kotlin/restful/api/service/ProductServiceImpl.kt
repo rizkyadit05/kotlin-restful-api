@@ -26,9 +26,7 @@ class ProductServiceImpl(
             productId = productCreateRequest.productId!!,
             name = productCreateRequest.name!!,
             price = productCreateRequest.price!!,
-            quantity = productCreateRequest.quantity!!,
-            createdAt = Date(),
-            updatedAt = null
+            quantity = productCreateRequest.quantity!!
         )
 
         if (!productRepository.existsByProductId(product.productId)) {

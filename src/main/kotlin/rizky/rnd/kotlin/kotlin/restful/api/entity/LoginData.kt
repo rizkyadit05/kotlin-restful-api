@@ -1,5 +1,6 @@
 package rizky.rnd.kotlin.kotlin.restful.api.entity
 
+import com.fasterxml.jackson.annotation.JsonFormat
 import io.jsonwebtoken.security.Password
 import jakarta.persistence.*
 import jakarta.validation.constraints.Email
@@ -13,22 +14,24 @@ data class LoginData(
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id:Long? = null,
+    val id: Long? = null,
 
     @Column(name = "name")
-    var name: String,
+    var name: String?,
 
     @Column(name = "email")
-    var email: String,
+    var email: String?,
 
     @Column(name = "password")
-    var password: String,
+    var password: String?,
 
     @Column(name = "created_at")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Jakarta")
     @CreationTimestamp
-    val createdAt: Date,
+    val createdAt: Date? = null,
 
     @Column(name = "updatedAt")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Jakarta")
     @UpdateTimestamp
-    var updatedAt: Date?
+    var updatedAt: Date? = null
 )
