@@ -1,14 +1,13 @@
 package rizky.rnd.kotlin.kotlin.restful.api.repository
 
+import io.jsonwebtoken.security.Password
+import jakarta.validation.constraints.Email
 import org.springframework.data.jpa.repository.JpaRepository
-import rizky.rnd.kotlin.kotlin.restful.api.entity.Product
+import rizky.rnd.kotlin.kotlin.restful.api.entity.LoginData
 
-interface LoginDataRepository : JpaRepository<Product, Long> {
-    fun existsByProductId(
-        productId: String
-    ): Boolean
-
-    fun findByProductId(
-        productId: String
-    ): Product?
+interface LoginDataRepository : JpaRepository<LoginData, Long> {
+    fun findByEmailAndPassword(
+        email: String,
+        password: String
+    ): LoginData?
 }

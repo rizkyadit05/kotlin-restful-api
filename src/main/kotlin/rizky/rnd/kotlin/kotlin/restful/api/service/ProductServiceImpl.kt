@@ -18,7 +18,7 @@ import java.util.stream.Collectors
 class ProductServiceImpl(
     val productRepository: ProductRepository,
     val validationUtil: ValidationUtil
-) : ProductService {
+): ProductService {
     override fun create(productCreateRequest: ProductCreateRequest): ProductResponse {
         validationUtil.validate(productCreateRequest)
 

@@ -7,7 +7,7 @@ import rizky.rnd.kotlin.kotlin.restful.api.entity.ApiKey
 import rizky.rnd.kotlin.kotlin.restful.api.repository.ApiKeyRepository
 
 @Component
-data class ApiKeySeeder(val apiKeyRepository: ApiKeyRepository) : ApplicationRunner {
+data class DbSeeder(val apiKeyRepository: ApiKeyRepository) : ApplicationRunner {
 
     private val staticApiKey = "staticSecret"
 

@@ -1,29 +1,28 @@
 package rizky.rnd.kotlin.kotlin.restful.api.entity
 
+import io.jsonwebtoken.security.Password
 import jakarta.persistence.*
+import jakarta.validation.constraints.Email
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import java.util.*
 
 @Entity
-@Table(name="product")
-data class Product(
+@Table(name="login_data")
+data class LoginData(
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val primaryId:Long? = null,
-
-    @Column(name = "product_id")
-    val productId: String,
+    val id:Long? = null,
 
     @Column(name = "name")
     var name: String,
 
-    @Column(name = "price")
-    var price: Long,
+    @Column(name = "email")
+    var email: String,
 
-    @Column(name = "quantity")
-    var quantity: Int,
+    @Column(name = "password")
+    var password: String,
 
     @Column(name = "created_at")
     @CreationTimestamp
