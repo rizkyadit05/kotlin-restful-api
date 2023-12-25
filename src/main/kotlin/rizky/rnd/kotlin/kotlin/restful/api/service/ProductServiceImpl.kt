@@ -11,8 +11,6 @@ import rizky.rnd.kotlin.kotlin.restful.api.model.ProductUpdateRequest
 import rizky.rnd.kotlin.kotlin.restful.api.repository.ProductRepository
 import rizky.rnd.kotlin.kotlin.restful.api.validation.ValidationUtil
 import java.sql.SQLIntegrityConstraintViolationException
-import java.util.*
-import java.util.stream.Collectors
 
 @Service
 class ProductServiceImpl(
